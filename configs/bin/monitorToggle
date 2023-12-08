@@ -1,0 +1,23 @@
+#!/bin/bash
+
+connected=$(xrandr | grep 'HDMI-1-0 connected')
+
+# monitor connected ?
+if [[ -z "$connected" ]]; then
+	echo 'Monitor not connected'
+
+	# Disable view if enabled (if cable was removed)
+	xrandr --output HDMI-1-0 --off
+else
+	# Monitor connected
+	
+	displayed=$(xrandr | grep 'HDMI-1-0 connected 1920x1080+1920+0')
+
+	if [[ -z "$displayed" ]]; then
+		echo 'Not displayed, enabling display'
+		xrandr --output HDMI-1-0 --mode 1920x1080 --pos 1920x0
+	else
+		echo 'Display is on, disabling display'
+		xrandr --output HDMI-1-0 --off
+	fi
+fi

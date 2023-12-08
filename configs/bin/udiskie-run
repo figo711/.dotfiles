@@ -1,0 +1,3 @@
+#!/bin/sh
+
+UDISKIE_DMENU_LAUNCHER="rofi" udiskie-dmenu -matching regex -dmenu -i -kb-accept-alt "" -kb-custom-1 "Shift+Return" -no-custom -multi-select
